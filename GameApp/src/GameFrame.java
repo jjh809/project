@@ -7,60 +7,23 @@ public class GameFrame extends JFrame {
 	private EditPanel editPanel = new EditPanel();
 	
 	public GameFrame() {
-		super("Å¸ÀÌÇÎ °ÔÀÓ");
+		super("íƒ€ì´í•‘ ê²Œì„");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(800,600);
-		
-		JLabel text = new JLabel("Å¸ÀÌ¸Ó: ");
-		
-		Container c = this.getContentPane();
-		//c.setBackground(Color.orange);
-		//c.add(new MyPanel(), BorderLayout.CENTER);
-		c.add(makeToolBar(), BorderLayout.NORTH);
-		this.setJMenuBar(makeMenu());
-		
 		setResizable(false);
+		Container c= this.getContentPane();
+		c.add(makeToolBar(),BorderLayout.NORTH);
+		this.setJMenuBar(makeMenu());
 		splitPane();
 		setVisible(true);
 	}
-	
-	public JToolBar makeToolBar() {
-		JToolBar tb = new JToolBar();
-		tb.add(new JButton("¿­±â"));
-		tb.add(new JButton("´İ±â"));
-		//tb.add(new JTextField("ÀÔ·Â....."));
-		return tb;
-	}
-	
-	public JMenuBar makeMenu() {
-		JMenuBar mb = new JMenuBar();
-		JMenu fileMenu = new JMenu("File");
-		
-		
-		fileMenu.add(new JMenuItem("New Game"));
-		fileMenu.addSeparator();
-		fileMenu.add("Exit");
-		
-		JMenu editMenu = new JMenu("Setting");
-		editMenu.add(new JMenuItem("Level Control"));
-		editMenu.add(new JMenuItem("Mode Change"));
-		JMenu viewMenu = new JMenu("View");
-		JMenu optionMenu = new JMenu("Option");
-		mb.add(fileMenu);
-		mb.add(optionMenu);
-		mb.add(editMenu);
-		mb.add(viewMenu);
-		
-		return mb;
-	}
-	
 	private void splitPane() {
 		JSplitPane hPane = new JSplitPane();
 		getContentPane().add(hPane, BorderLayout.CENTER);
 		
 		hPane.setOrientation(JSplitPane.HORIZONTAL_SPLIT);		
 		hPane.setDividerLocation(500);
-		hPane.setEnabled(false); // split bar¸¦ ¿òÁ÷ÀÏ ¼ö ¾øµµ·Ï ÇÏ±â À§ÇØ
+		hPane.setEnabled(false); // split barë¥¼ ì›€ì§ì¼ ìˆ˜ ì—†ë„ë¡ í•˜ê¸° ìœ„í•´
 		hPane.setLeftComponent(gamePanel);
 		
 		JSplitPane pPane = new JSplitPane();
@@ -69,5 +32,34 @@ public class GameFrame extends JFrame {
 		pPane.setDividerLocation(200);
 		pPane.setTopComponent(scorePanel);
 		pPane.setBottomComponent(editPanel);
+	}
+	
+	public JToolBar makeToolBar() {
+		JToolBar tb = new JToolBar();
+		tb.add(new JButton("ì—´ê¸°"));
+		tb.add(new JButton("ë‹«ê¸°"));
+		tb.add(new JTextField("ì…ë ¥"));
+		return tb;
+	}
+	public JMenuBar makeMenu() {
+		JMenuBar mb = new JMenuBar();  //ë©”ë‰´ë°”: ê³µê°„, ë©”ë‰´: ë©”ë‰´ì¹¸ë“¤, ë©”ë‰´ì•„ì´í…œ: ë©”ë‰´ì¹¸ëˆ„ë¥´ë©´ ë°‘ìœ¼ë¡œ ì˜¤ëŠ”ì• ë“¤
+		JMenu optionMenu = new JMenu("Option");
+		mb.setBackground(new Color(255,238,137));
+		
+		optionMenu.add(new JMenuItem("New Game"));
+		optionMenu.addSeparator();
+		optionMenu.add(new JMenuItem("Exit"));
+		optionMenu.setForeground(new Color(255,124,25));
+		
+		JMenu settingMenu = new JMenu("Setting");
+		settingMenu.add(new JMenuItem("Level Control"));
+		settingMenu.add(new JMenuItem("Mode Change"));
+		settingMenu.setForeground(new Color(255,124,25));
+		
+		
+		mb.add(optionMenu);
+		mb.add(settingMenu);
+		
+		return mb;
 	}
 }
